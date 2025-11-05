@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Bookstore</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Bookstore</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html">Cart</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="checkout-page">
+    <h2>Checkout</h2>
+
+    <form class="checkout-form">
+      <h3>Shipping Information</h3>
+      <label>Full Name
+        <input type="text" placeholder="John Doe" required />
+      </label>
+      <label>Address
+        <input type="text" placeholder="123 Main Street" required />
+      </label>
+      <label>City
+        <input type="text" placeholder="Newark" required />
+      </label>
+      <label>State
+        <input type="text" placeholder="NJ" required />
+      </label>
+      <label>ZIP Code
+        <input type="text" placeholder="07102" required />
+      </label>
+
+      <h3>Payment Details</h3>
+      <label>Card Number
+        <input type="text" placeholder="XXXX XXXX XXXX XXXX" required />
+      </label>
+      <label>Expiration Date
+        <input type="month" required />
+      </label>
+      <label>CVV
+        <input type="text" placeholder="123" required />
+      </label>
+
+      <button type="submit" class="btn">Place Order</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 TBR</p>
+  </footer>
+</body>
+</html>

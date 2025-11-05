@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart | Bookstore</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Bookstore</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="browse.html">Browse</a>
+      <a href="cart.html" class="active">Cart</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main class="cart-page">
+    <h2>Your Shopping Cart</h2>
+
+    <div class="cart-container">
+      <div class="cart-item">
+        <img src="assets/images/sample-book.jpg" alt="Book Cover" />
+        <div class="item-info">
+          <h3>The Great Adventure</h3>
+          <p>by Jane Doe</p>
+          <p>$14.99</p>
+          <label>Qty:
+            <input type="number" min="1" value="1" />
+          </label>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <div class="cart-item">
+        <img src="assets/images/sample-book2.jpg" alt="Book Cover" />
+        <div class="item-info">
+          <h3>Science of Everything</h3>
+          <p>by John Smith</p>
+          <p>$19.99</p>
+          <label>Qty:
+            <input type="number" min="1" value="1" />
+          </label>
+          <button class="remove-btn">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <p><strong>Total:</strong> $34.98</p>
+      <a href="checkout.html" class="btn">Proceed to Checkout</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 TBR</p>
+  </footer>
+</body>
+</html>

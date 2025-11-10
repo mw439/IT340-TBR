@@ -1,1 +1,240 @@
-/* You can add global styles to this file, and also import other style files */
+/* =====================================
+   Global Styles — TBR Bookstore (Enhanced Contrast)
+   ===================================== */
+
+:root {
+  --bg-main: #fffacd;     /* Light yellow background */
+  --bg-card: #f9f5e3;     /* Soft beige for cards/boxes */
+  --accent: #0a5644;      /* Deep green accent */
+  --button: #3d2412;      /* Dark brown button */
+  --hover: #895129;       /* Warm brown hover */
+  --text-dark: #0a5644;
+  --text-light: #fffbe9;
+  --shadow: rgba(0, 0, 0, 0.12);
+}
+
+/* =====================================
+   Reset & Base
+   ===================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  color: var(--text-dark);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* =====================================
+   Headings
+   ===================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accent);
+  margin-bottom: 0.6em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.4rem;
+text-align: center;
+}
+
+/* =====================================
+   Links
+   ===================================== */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover {
+  color: var(--hover);
+  transform: translateY(-2px);
+}
+
+/* =====================================
+   Buttons
+   ===================================== */
+
+button,
+.btn {
+  background-color: var(--button);
+  color: var(--text-light);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 8px var(--shadow);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--hover);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* =====================================
+   Navigation
+   ===================================== */
+
+nav {
+  background-color: #f3efdd;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+nav a {
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: var(--hover);
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* =====================================
+   Sections & Hero
+   ===================================== */
+
+section {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.hero {
+  background: linear-gradient(to right, #0a5644, #3d2412);
+  color: var(--text-light);
+  padding: 100px 20px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 650px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* =====================================
+   Feature Boxes
+   ===================================== */
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 3rem 1.5rem;
+}
+
+.feature-box {
+  background: var(--bg-card);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px var(--shadow);
+  padding: 1.5rem;
+  width: 280px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px var(--shadow);
+}
+
+.feature-box h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+/* =====================================
+   Footer
+   ===================================== */
+
+footer {
+  background-color: var(--accent);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1.2rem 0;
+  margin-top: 3rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+/* =====================================
+   Responsive
+   ===================================== */
+
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .center-text {
+  text-align: center;
+  margin: 0 auto;
+}
+
+}

@@ -1,34 +1,61 @@
-import { Routes } from '@angular/router';
+// // import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
-
-// import { Routes } from '@angular/router';
-// import { LoginComponent } from './pages/login/login.component';
-// import { RegisterComponent } from './pages/register/register.component';
-// import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-// import { BrowseComponent } from './pages/browse/browse.component';
-// import { SearchComponent } from './pages/search/search.component';
-// import { CartComponent } from './pages/cart/cart.component';
-// import { CheckoutComponent } from './pages/checkout/checkout.component';
-// import { BookDetailsComponent } from './pages/book-details/book-details.component';
-// import { ProfileComponent } from './pages/profile/profile.component';
-// import { AboutComponent } from './pages/about/about.component';
-// import { ContactComponent } from './pages/contact/contact.component';
-// import { NotFoundComponent } from './pages/not-found/not-found.component';
+// // export const routes: Routes = [];
+// import { Login} from './pages/login/login';
+// import { Register} from './pages/register/register';
+// import { ForgotPassword} from './pages/forgot-password/forgot-password';
+// import { Browse} from './pages/browse/browse';
+// import { Search} from './pages/search/search';
+// import { Cart } from './pages/cart/cart';
+// import { Checkout} from './pages/checkout/checkout';
+// import { BookDetails} from './pages/book-details/book-details';
+// import { Profile} from './pages/profile/profile';
+// import { About} from './pages/about/about';
+// import { Contact } from './pages/contact/contact';
+// import { NotFound} from './pages/not-found/not-found';
 
 // export const routes: Routes = [
 //   { path: '', redirectTo: '/browse', pathMatch: 'full' },
-//   { path: 'login', component: LoginComponent },
-//   { path: 'register', component: RegisterComponent },
-//   { path: 'forgot-password', component: ForgotPasswordComponent },
-//   { path: 'browse', component: BrowseComponent },
-//   { path: 'search', component: SearchComponent },
-//   { path: 'cart', component: CartComponent },
-//   { path: 'checkout', component: CheckoutComponent },
-//   { path: 'book-details', component: BookDetailsComponent },
-//   { path: 'profile', component: ProfileComponent },
-//   { path: 'about', component: AboutComponent },
-//   { path: 'contact', component: ContactComponent },
-//   { path: '**', component: NotFoundComponent }
+//   { path: 'login', component: Login },
+//   { path: 'register', component: Register},
+//   { path: 'forgot-password', component: ForgotPassword },
+//   { path: 'browse', component: Browse},
+//   { path: 'search', component: Search },
+//   { path: 'cart', component: Cart },
+//   { path: 'checkout', component: Checkout},
+//   { path: 'book-details', component: BookDetails},
+//   { path: 'profile', component: Profile},
+//   { path: 'about', component: About},
+//   { path: 'contact', component: Contact},
+//   { path: '**', component: NotFound}
 // ];
 
+import { Routes } from '@angular/router';
+import { Login } from './pages/login/login';
+import { Register } from './pages/register/register';
+import { ForgotPassword } from './pages/forgot-password/forgot-password';
+import { Browse } from './pages/browse/browse';
+import { Search } from './pages/search/search';
+import { Cart } from './pages/cart/cart';
+import { Checkout } from './pages/checkout/checkout';
+import { BookDetails } from './pages/book-details/book-details';
+import { Profile } from './pages/profile/profile';
+import { About } from './pages/about/about';
+import { Contact } from './pages/contact/contact';
+import { NotFound } from './pages/not-found/not-found';
+
+export const routes: Routes = [
+  { path: '', redirectTo: '/browse', pathMatch: 'full' },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
+  { path: 'forgot-password', component: ForgotPassword },
+  { path: 'browse', component: Browse },
+  { path: 'search', component: Search },
+  { path: 'cart', component: Cart },
+  { path: 'checkout', component: Checkout },
+  { path: 'book-details', component: BookDetails },
+  { path: 'profile', component: Profile },
+  { path: 'about', component: About },
+  { path: 'contact', component: Contact },
+  { path: '**', component: NotFound },
+];

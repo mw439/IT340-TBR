@@ -31,6 +31,9 @@
 // ];
 
 import { Routes } from '@angular/router';
+
+// Standalone page imports
+import { Home } from './home/home';
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { ForgotPassword } from './pages/forgot-password/forgot-password';
@@ -45,7 +48,7 @@ import { Contact } from './pages/contact/contact';
 import { NotFound } from './pages/not-found/not-found';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/browse', pathMatch: 'full' },
+  { path: '', component: Home }, // Home page
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'forgot-password', component: ForgotPassword },
@@ -57,5 +60,5 @@ export const routes: Routes = [
   { path: 'profile', component: Profile },
   { path: 'about', component: About },
   { path: 'contact', component: Contact },
-  { path: '**', component: NotFound },
+  { path: '**', component: NotFound }, // 404 fallback
 ];

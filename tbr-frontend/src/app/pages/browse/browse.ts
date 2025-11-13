@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-browse',
-  imports: [],
+  standalone: true,
   templateUrl: './browse.html',
-  styleUrl: './browse.css',
+  styleUrls: ['./browse.css']
 })
-export class Browse {
-
-}
+export class Browse {}

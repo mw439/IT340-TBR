@@ -1,10 +1,11 @@
-<header>
-  <nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/browse">Browse</a>
-    <a routerLink="/search">Search</a>
-    <a routerLink="/cart">Cart</a>
-    <a routerLink="/login">Login</a>
+<header class="navbar">
+  <nav class="nav-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/browse" routerLinkActive="active">Browse</a>
+    <a routerLink="/search" routerLinkActive="active">Search</a>
+    <a routerLink="/cart" routerLinkActive="active">Cart</a>
+    <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    <a routerLink="/login" routerLinkActive="active">Login</a>
   </nav>
 </header>
 

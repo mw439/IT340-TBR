@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login Page</title>
- 
-</head>
-<body>
+<main class="login-wrapper">
   <div class="login-container">
     <h2>Login</h2>
     <form>
@@ -17,14 +9,14 @@
       <input type="password" id="password" placeholder="Enter your password" required />
 
       <div class="actions">
-        <a href="#">Forgot password?</a>
+        <a routerLink="/forgot-password" class="forgot">Forgot password?</a>
         <button type="submit">Login</button>
       </div>
 
       <p class="register-link">
-        Don’t have an account? <a href="register.html">Register</a>
+        Don’t have an account?
+        <a routerLink="/register">Register</a>
       </p>
     </form>
   </div>
-</body>
-</html>
+</main>

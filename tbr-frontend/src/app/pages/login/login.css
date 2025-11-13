@@ -1,0 +1,110 @@
+/* ===============================
+   Login Component — TBR Bookstore
+   Matches homepage theme
+   =============================== */
+
+:host {
+  display: block;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #0a5644 0%,
+    #3d2412 100%
+  ); /* green to brown blend */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: rgba(255, 250, 205, 0.95); /* soft yellow box */
+  color: #2b2b2b;
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  color: #0a5644;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+label {
+  text-align: left;
+  font-weight: 600;
+  color: #3d2412;
+}
+
+input {
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 2px solid #0a5644;
+  outline: none;
+  font-size: 1rem;
+  color: #2b2b2b;
+  transition: border 0.3s;
+}
+
+input:focus {
+  border-color: #895129;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.actions a {
+  color: #0a5644;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.actions a:hover {
+  color: #3d2412;
+}
+
+button {
+  background-color: #3d2412;
+  color: #fffacd;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #895129;
+}
+
+.register-link {
+  margin-top: 1.5rem;
+  color: #3d2412;
+}
+
+.register-link a {
+  color: #0a5644;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}

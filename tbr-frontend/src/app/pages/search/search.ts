@@ -1,11 +1,20 @@
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-search',
+//   imports: [],
+//   templateUrl: './search.html',
+//   styleUrl: './search.css',
+// })
+// export class Search {
+
+// }
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-search',
-  imports: [],
+  standalone: true,
   templateUrl: './search.html',
-  styleUrl: './search.css',
+  styleUrls: ['./search.css'],
 })
-export class Search {
-
-}
+export class Search {}

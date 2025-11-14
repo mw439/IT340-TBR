@@ -1,11 +1,21 @@
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-forgot-password',
+//   imports: [],
+//   templateUrl: './forgot-password.html',
+//   styleUrl: './forgot-password.css',
+// })
+// export class ForgotPassword {
+
+// }
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-forgot-password',
-  imports: [],
+  standalone: true,
   templateUrl: './forgot-password.html',
-  styleUrl: './forgot-password.css',
+  styleUrls: ['./forgot-password.css'],
 })
-export class ForgotPassword {
+export class ForgotPassword {}
 
-}

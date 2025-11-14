@@ -1,11 +1,21 @@
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-checkout',
+//   imports: [],
+//   templateUrl: './checkout.html',
+//   styleUrl: './checkout.css',
+// })
+// export class Checkout {
+
+// }
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-checkout',
-  imports: [],
+  standalone: true,
   templateUrl: './checkout.html',
-  styleUrl: './checkout.css',
+  styleUrls: ['./checkout.css'],
 })
-export class Checkout {
+export class Checkout {}
 
-}

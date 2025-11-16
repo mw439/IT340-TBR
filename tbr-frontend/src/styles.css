@@ -60,7 +60,7 @@ h2 {
 
 h3 {
   font-size: 1.4rem;
-text-align: center;
+  text-align: center;
 }
 
 /* =====================================
@@ -233,8 +233,49 @@ footer {
   }
 
   .center-text {
-  text-align: center;
-  margin: 0 auto;
+    text-align: center;
+    margin: 0 auto;
+  }
 }
 
+/* =====================================
+   DARK MODE SUPPORT
+   ===================================== */
+
+.dark-mode {
+  --bg-main: #0b0610;         /* Near-black purple */
+  --bg-card: #120914;         /* Deeper purple-black for cards */
+  --accent: #7542c8;          /* Dark muted royal purple */
+  --button: #2b0f3a;          /* Deep plum button */
+  --hover: #8d56e3;           /* Strong dark purple hover */
+  --text-dark: #c9a7ff;       /* Darker purple text (not bright lavender) */
+  --text-light: #d5c4ff;      /* Light purple but still dark enough */
+  --shadow: rgba(0, 0, 0, 0.55);
+
+  background-color: var(--bg-main);
+  color: var(--text-light);
+}
+
+
+
+
+body.dark-mode,
+body.dark-mode nav a,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+  color: var(--text-light);
+}
+
+body.dark-mode nav {
+  background-color: #18201d;
+}
+
+body.dark-mode .feature-box {
+  background: var(--bg-card);
+  box-shadow: 0 4px 10px rgba(255,255,255,0.05);
+}
+
+body.dark-mode footer {
+  background-color: #114f3b;
 }

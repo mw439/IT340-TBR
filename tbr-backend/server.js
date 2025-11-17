@@ -7,6 +7,10 @@ const authRoutes = require('./routes/auth');
 dotenv.config();
 const app = express();
 
+app.get("/", (reg,res) => {
+res.send( "Hello from MEAN stack backend!")
+});
+
 // Allow frontend
 app.use(cors({ origin: 'http://localhost:4200' }));
 

@@ -5,7 +5,7 @@ const router = express.Router();
 
 // GET /api/cart - get all cart items
 router.get('/', async (req, res) => {
-  try{
+  try {
     const items = await CartItem.find().sort({ createdAt: -1 });
     res.json(items);
   } catch (err) {
@@ -20,7 +20,9 @@ router.post('/', async (req, res) => {
     const { title, author, isbn, coverUrl, price, quantity } = req.body;
 
     if (!title || !price) {
-      return res.status(400).json({ error: 'Title and price are required.' });
+      return res
+        .status(400)
+        .json({ error: 'title and price are required to add to cart.' });
     }
 
     const item = new CartItem({
@@ -40,7 +42,25 @@ router.post('/', async (req, res) => {
   }
 });
 
-// DELETE /api/cart/:id - remove item
+// PUT /api/cart/:id - update quantity (or other fields)
+router.put('/:id', async (req, res) => {
+  try {
+    const updated = await CartItem.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!updated) {
+      return res.status(404).json({ error: 'Cart item not found.' });
+    }
+    res.json(updated);
+  } catch (err) {
+    console.error('Error updating cart item:', err.message);
+    res.status(500).json({ error: 'Failed to update cart item.' });
+  }
+});
+
+// DELETE /api/cart/:id - remove single item
 router.delete('/:id', async (req, res) => {
   try {
     const deleted = await CartItem.findByIdAndDelete(req.params.id);

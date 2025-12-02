@@ -12,7 +12,6 @@ router.get('/search', async (req, res) => {
   }
 
   try {
-    // Call Open Library API
     const response = await axios.get('https://openlibrary.org/search.json', {
       params: {
         q: query,
@@ -22,24 +21,19 @@ router.get('/search', async (req, res) => {
 
     const docs = response.data.docs || [];
 
-    // Map the external data to a simpler format for your frontend
     const books = docs.map((doc) => {
-      const isbn = doc.isbn && doc.isbn.length > 0 ? doc.isbn[0] : null;
-      const coverUrl = isbn
-        ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
+      const coverId = doc.cover_i;
+      const coverUrl = coverId
+        ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
         : null;
 
-      // Fake price just so your cart has something (you can change this)
-      const basePrice = 10;
-      const randomExtra = Math.floor(Math.random() * 10); // 0–9
-      const price = basePrice + randomExtra;
+      const price = 10 + Math.floor(Math.random() * 15); // fake price for now
 
       return {
-        title: doc.title || 'Unknown title',
-        author: doc.author_name && doc.author_name[0]
-          ? doc.author_name[0]
-          : 'Unknown author',
-        isbn,
+        key: doc.key,
+        title: doc.title,
+        author: (doc.author_name && doc.author_name[0]) || 'Unknown',
+        isbn: (doc.isbn && doc.isbn[0]) || '',
         coverUrl,
         price,
         firstPublishYear: doc.first_publish_year || null,

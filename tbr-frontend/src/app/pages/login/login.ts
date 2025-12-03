@@ -1,73 +1,37 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService, AuthResponse } from '../../services/auth.service';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule], // RouterModule required for routerLink
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrls: ['./login.css'],
 })
-export class Login {
-  showLogin = true;
-  showRegister = false;
-  showForgot = false;
-
-  loginEmail = '';
-  loginPassword = '';
-
-  registerUsername = '';
-  registerEmail = '';
-  registerPassword = '';
-  registerConfirm = '';
-
+export class Login {  // Keep class name 'Login' to match route
+  email = '';
+  password = '';
   errorMessage = '';
-  successMessage = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
   onLoginSubmit() {
-    this.errorMessage = '';
-    this.successMessage = '';
-
-    this.auth.login({ email: this.loginEmail, password: this.loginPassword })
-      .subscribe({
-        next: (res: AuthResponse) => {
-          localStorage.setItem('tbr_token', res.token);
-          this.successMessage = 'Login successful! Redirecting...';
-          this.router.navigate(['/browse']);
-        },
-        error: (err: any) => {
-          this.errorMessage = err.error?.message || 'Login failed. Please check your email and password.';
-        }
-      });
-  }
-
-  onRegisterSubmit() {
-    this.errorMessage = '';
-    this.successMessage = '';
-
-    if (this.registerPassword !== this.registerConfirm) {
-      this.errorMessage = 'Passwords do not match.';
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Email and password are required.';
       return;
     }
 
-    this.auth.register({
-      username: this.registerUsername,
-      email: this.registerEmail,
-      password: this.registerPassword
-    }).subscribe({
-      next: (res: AuthResponse) => {
-        this.successMessage = 'Account created! You can now log in.';
-        this.showRegister = false;
-        this.showLogin = true;
+    this.auth.login({ email: this.email, password: this.password }).subscribe({
+      next: (res) => {
+        localStorage.setItem('tbr_token', res.token);
+        this.router.navigate(['/home']);
       },
-      error: (err: any) => {
-        this.errorMessage = err.error?.message || 'Registration failed.';
-      }
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Login failed.';
+      },
     });
   }
 }

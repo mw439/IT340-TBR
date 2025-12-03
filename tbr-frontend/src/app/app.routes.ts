@@ -1,15 +1,22 @@
 import { Routes } from '@angular/router';
-import { Login } from './pages/login/login';
-// remove the Register import completely
 
 export const routes: Routes = [
-  { path: 'login', component: Login },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login').then((m) => m.Login),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./pages/register/register').then((m) => m.Register),
+  },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./pages/home/home').then((m) => m.Home),
+  },
 
-  // Optional: make /register also show the Login page,
-  // since your login page has the Register panel built-in.
-  { path: 'register', component: Login },
-
-  // other routes...
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: '/login' },
 ];

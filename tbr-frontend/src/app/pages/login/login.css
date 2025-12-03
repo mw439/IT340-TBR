@@ -96,15 +96,19 @@ button:hover {
 
 .register-link {
   margin-top: 1.5rem;
-  color: #3d2412;
+  text-align: center; /* Center the text */
+  font-weight: 700;   /* Make the link bold */
+  color: #0a5644;
 }
 
 .register-link a {
   color: #0a5644;
-  font-weight: 600;
   text-decoration: none;
+  font-weight: 700;   /* Bold the actual link text */
 }
 
 .register-link a:hover {
   text-decoration: underline;
 }
+
+

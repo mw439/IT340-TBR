@@ -1,55 +1,46 @@
-// src/app/pages/register/register.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-
-import { AuthService, AuthResponse } from '../../services/auth.service';
+import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule], // RouterModule needed for routerLink
   templateUrl: './register.html',
-  styleUrl: './register.css'
+  styleUrls: ['./register.css'],
 })
 export class Register {
-  // form fields
-  registerUsername = '';
-  registerEmail = '';
-  registerPassword = '';
-  registerConfirm = '';
-
-  // messages
+  username = '';
+  email = '';
+  password = '';
+  confirm = '';
   errorMessage = '';
-  successMessage = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
   onRegisterSubmit() {
-    this.errorMessage = '';
-    this.successMessage = '';
+    if (!this.username || !this.email || !this.password) {
+      this.errorMessage = 'Please fill in all required fields.';
+      return;
+    }
 
-    if (this.registerPassword !== this.registerConfirm) {
+    if (this.password !== this.confirm) {
       this.errorMessage = 'Passwords do not match.';
       return;
     }
 
-    this.auth.register({
-      username: this.registerUsername,
-      email: this.registerEmail,
-      password: this.registerPassword
-    }).subscribe({
-      next: (res: AuthResponse) => {
-        this.successMessage = 'Account created! You can now log in.';
-        // after a moment, go to login page
-        setTimeout(() => {
-          this.router.navigate(['/login']);
-        }, 1000);
-      },
-      error: (err: any) => {
-        this.errorMessage = err.error?.message || 'Registration failed.';
-      }
-    });
+    this.auth
+      .register({ username: this.username, email: this.email, password: this.password })
+      .subscribe({
+        next: (res) => {
+          localStorage.setItem('tbr_token', res.token);
+          this.router.navigate(['/login']); // optional: navigate to login after successful register
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || 'Registration failed.';
+        },
+      });
   }
 }

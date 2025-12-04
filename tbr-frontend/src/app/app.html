@@ -1,20 +1,3 @@
-<!-- <header class="navbar">
-  <nav class="nav-links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/browse" routerLinkActive="active">Browse</a>
-    <a routerLink="/search" routerLinkActive="active">Search</a>
-    <a routerLink="/cart" routerLinkActive="active">Cart</a>
-    <a routerLink="/contact" routerLinkActive="active">Contact</a>
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-  </nav>
-</header>
-
-<router-outlet></router-outlet>
-
-<footer>
-  <p>&copy; 2025 TBR Bookstore. All rights reserved.</p>
-</footer> -->
-
 <header class="navbar">
   <nav class="nav-links">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
@@ -22,15 +5,20 @@
     <a routerLink="/search" routerLinkActive="active">Search</a>
     <a routerLink="/cart" routerLinkActive="active">Cart</a>
     <a routerLink="/contact" routerLinkActive="active">Contact</a>
-    <a routerLink="/login" routerLinkActive="active">Login</a>
+
+    <!-- 🔻 Show Login when NOT logged in -->
+    <ng-container *ngIf="!(isLoggedIn$ | async); else loggedInLinks">
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+    </ng-container>
+
+    <!-- 🔻 Show "Profile" + "Logout" when logged in -->
+    <ng-template #loggedInLinks>
+      <a routerLink="/profile" routerLinkActive="active">Profile</a>
+      <button type="button" class="logout-button" (click)="onLogout()">Logout</button>
+    </ng-template>
 
     <button class="dark-toggle" (click)="toggleDarkMode()">🌙</button>
-
   </nav>
 </header>
 
 <router-outlet></router-outlet>
-
-<footer>
-  <p>&copy; 2025 TBR Bookstore. All rights reserved.</p>
-</footer>

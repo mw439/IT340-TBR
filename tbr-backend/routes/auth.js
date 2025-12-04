@@ -4,11 +4,19 @@ const User = require('../User');
 
 const router = express.Router();
 
-// Helper: generate JWT
-const generateToken = (userId) => {
-  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-    expiresIn: '7d',
-  });
+// Helper: generate JWT with id, email, and username
+const generateToken = (user) => {
+  return jwt.sign(
+    {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: '7d',
+    }
+  );
 };
 
 // @route   POST /api/auth/register
@@ -30,7 +38,7 @@ router.post('/register', async (req, res) => {
     const user = new User({ username, email, password });
     await user.save();
 
-    const token = generateToken(user._id);
+    const token = generateToken(user);
 
     res.status(201).json({
       message: 'User registered successfully.',
@@ -67,7 +75,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
-    const token = generateToken(user._id);
+    const token = generateToken(user);
 
     res.json({
       message: 'Login successful.',

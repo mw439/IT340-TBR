@@ -12,7 +12,7 @@ export interface AuthResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/auth';
+  private apiUrl = 'http://192.168.229.20:5000/api/auth';
 
   // start as "logged in" if there's already a token in localStorage
   private loggedInSubject = new BehaviorSubject<boolean>(!!localStorage.getItem('tbr_token'));

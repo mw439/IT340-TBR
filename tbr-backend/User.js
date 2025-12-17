@@ -21,6 +21,16 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+
+    // ===== MFA Fields =====
+    mfaEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    mfaSecret: {
+      type: String,
+      default: null, // base32 secret
+    },
   },
   {
     timestamps: true,
@@ -29,10 +39,7 @@ const userSchema = new mongoose.Schema(
 
 // Hash password before saving
 userSchema.pre('save', async function (next) {
-  // If password wasn't changed, skip
-  if (!this.isModified('password')) {
-    return next();
-  }
+  if (!this.isModified('password')) return next();
 
   try {
     const salt = await bcrypt.genSalt(10);

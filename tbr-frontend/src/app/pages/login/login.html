@@ -1,7 +1,9 @@
 <div class="login-container">
-  <h2>Login</h2>
+  <h2 *ngIf="!mfaStep">Login</h2>
+  <h2 *ngIf="mfaStep">Multi-Factor Authentication</h2>
 
-  <form (ngSubmit)="onLoginSubmit()">
+  <!-- LOGIN FORM -->
+  <form *ngIf="!mfaStep" (ngSubmit)="onLoginSubmit()">
     <input
       type="email"
       [(ngModel)]="email"
@@ -23,8 +25,29 @@
     <button type="submit">Login</button>
   </form>
 
+  <!-- MFA FORM (same page, no new route) -->
+  <form *ngIf="mfaStep" (ngSubmit)="onMfaSubmit()">
+    <p>Enter the 6-digit code from your Authenticator app.</p>
+
+    <input
+      type="text"
+      [(ngModel)]="mfaCode"
+      name="mfaCode"
+      placeholder="123456"
+      maxlength="6"
+      required
+    />
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <button type="submit">Verify</button>
+    <button type="button" (click)="backToLogin()" style="margin-left: 10px;">
+      Back
+    </button>
+  </form>
+
   <!-- Create Account link -->
-  <p class="register-link">
+  <p class="register-link" *ngIf="!mfaStep">
     <a routerLink="/register">Create New Account</a>
   </p>
 </div>

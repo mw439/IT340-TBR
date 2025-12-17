@@ -1,19 +1,33 @@
 <div class="register-container">
-  <h2>Create Account</h2>
+  <h2 *ngIf="!enrollStep">Create Account</h2>
+  <h2 *ngIf="enrollStep">Set Up Google Authenticator</h2>
 
-  <form (ngSubmit)="onRegisterSubmit()">
-    <input type="text" [(ngModel)]="username" name="username" placeholder="Username" required />
-    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
-    <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required />
-    <input type="password" [(ngModel)]="confirm" name="confirm" placeholder="Confirm Password" required />
+  <!-- Register form -->
+  <form *ngIf="!enrollStep" (ngSubmit)="onRegisterSubmit()">
+    <input [(ngModel)]="username" name="username" placeholder="Username" required />
+    <input [(ngModel)]="email" name="email" type="email" placeholder="Email" required />
+    <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required />
 
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-    <button type="submit">Register</button>
+    <button type="submit">Create Account</button>
   </form>
 
-  <!-- Return to Login link centered and on next line -->
-  <p class="login-link" style="text-align: center; margin-top: 1.5rem;">
-    <a routerLink="/login">Return to Login</a>
+  <!-- Forced MFA enrollment -->
+  <div *ngIf="enrollStep">
+    <p>
+      Scan this QR code using <strong>Google Authenticator</strong>, then enter the 6-digit code.
+    </p>
+
+    <img [src]="qrDataUrl" alt="MFA QR Code" style="max-width: 260px; border-radius: 12px; display:block; margin: 14px 0;" />
+
+    <form (ngSubmit)="completeEnrollment()">
+      <input [(ngModel)]="mfaCode" name="mfaCode" placeholder="123456" maxlength="6" required />
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <button type="submit">Finish Setup</button>
+    </form>
+  </div>
+
+  <p class="login-link" *ngIf="!enrollStep">
+    <a routerLink="/login">Already have an account? Login</a>
   </p>
 </div>

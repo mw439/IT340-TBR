@@ -1,6 +1,14 @@
 <header class="navbar">
   <nav class="nav-links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <!-- ✅ FIXED HOME ROUTE -->
+    <a
+      routerLink="/home"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Home
+    </a>
+
     <a routerLink="/browse" routerLinkActive="active">Browse</a>
     <a routerLink="/search" routerLinkActive="active">Search</a>
     <a routerLink="/cart" routerLinkActive="active">Cart</a>
@@ -11,10 +19,12 @@
       <a routerLink="/login" routerLinkActive="active">Login</a>
     </ng-container>
 
-    <!-- 🔻 Show "Profile" + "Logout" when logged in -->
+    <!-- 🔻 Show Profile + Logout when logged in -->
     <ng-template #loggedInLinks>
       <a routerLink="/profile" routerLinkActive="active">Profile</a>
-      <button type="button" class="logout-button" (click)="onLogout()">Logout</button>
+      <button type="button" class="logout-button" (click)="onLogout()">
+        Logout
+      </button>
     </ng-template>
 
     <button class="dark-toggle" (click)="toggleDarkMode()">🌙</button>

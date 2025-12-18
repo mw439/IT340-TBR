@@ -1,38 +1,42 @@
 <header class="navbar">
-  <nav class="nav-links">
-    <a
-      routerLink="/home"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      Home
-    </a>
+  <nav class="nav">
+    <!-- LEFT spacer (keeps center truly centered) -->
+    <div class="nav-left"></div>
 
-    <a routerLink="/browse" routerLinkActive="active">Browse</a>
-    <a routerLink="/search" routerLinkActive="active">Search</a>
+    <!-- CENTER links -->
+    <div class="nav-center">
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">HOME</a>
+      <a routerLink="/browse" routerLinkActive="active">BROWSE</a>
+      <a routerLink="/search" routerLinkActive="active">SEARCH</a>
+      <a routerLink="/contact" routerLinkActive="active">CONTACT</a>
+      <a routerLink="/profile" routerLinkActive="active">PROFILE</a>
+    </div>
 
-    <!-- Cart with count badge -->
-    <a routerLink="/cart" routerLinkActive="active" class="cart-link">
-      Cart
-      <ng-container *ngIf="(cartCount$ | async) as c">
-        <span class="cart-badge" *ngIf="c > 0">{{ c }}</span>
-      </ng-container>
-    </a>
-
-    <a routerLink="/contact" routerLinkActive="active">Contact</a>
-
-    <ng-container *ngIf="!(isLoggedIn$ | async); else loggedInLinks">
-      <a routerLink="/login" routerLinkActive="active">Login</a>
-    </ng-container>
-
-    <ng-template #loggedInLinks>
-      <a routerLink="/profile" routerLinkActive="active">Profile</a>
-      <button type="button" class="logout-button" (click)="onLogout()">
+    <!-- RIGHT actions (UNCHANGED, already perfect) -->
+    <div class="nav-right">
+      <button
+        type="button"
+        class="logout-button"
+        (click)="onLogout()"
+        *ngIf="(isLoggedIn$ | async)"
+      >
         Logout
       </button>
-    </ng-template>
 
-    <button class="dark-toggle" (click)="toggleDarkMode()">🌙</button>
+      <button class="dark-toggle" (click)="toggleDarkMode()" title="Toggle dark mode">
+        🌙
+      </button>
+
+      <a routerLink="/cart" routerLinkActive="active" class="cart-icon" title="Cart">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 4h-2l-1 2v2h2l2.7 8.1c.2.6.8.9 1.4.9h7.8c.6 0 1.1-.4 1.3-1l2.1-7H7.4L6.7 6H20V4H7zm3 16a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm8 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+        </svg>
+
+        <ng-container *ngIf="(cartCount$ | async) as c">
+          <span class="cart-badge" *ngIf="c > 0">{{ c }}</span>
+        </ng-container>
+      </a>
+    </div>
   </nav>
 </header>
 

@@ -1,12 +1,12 @@
 <div class="search-page">
   <h1 class="title">Search Books</h1>
-  <p class="subtitle">Search Harry Potter books and other titles using our backend search API.</p>
+  <p class="subtitle">Search titles and add them to your cart.</p>
 
   <div class="search-bar">
     <input
       type="text"
       [(ngModel)]="query"
-      placeholder="Try: harry potter, sorcerer's stone, fantasy..."
+      placeholder="Try: harry potter, fantasy, wizard..."
       (keyup.enter)="onSearch()"
     />
     <button (click)="onSearch()" [disabled]="loading">Search</button>
@@ -20,7 +20,7 @@
 
   <div class="results" *ngIf="!loading && results.length > 0">
     <div class="card" *ngFor="let book of results">
-      <div class="cover">
+      <div class="cover" (click)="addToCart(book)" title="Click to add to cart">
         <img *ngIf="book.coverUrl" [src]="book.coverUrl" alt="cover" />
         <div *ngIf="!book.coverUrl" class="no-cover">No Cover</div>
       </div>
@@ -34,6 +34,8 @@
         <p class="author">Author: {{ book.author }}</p>
         <p class="meta" *ngIf="book.firstPublishYear">First Published: {{ book.firstPublishYear }}</p>
         <p class="meta" *ngIf="book.isbn">ISBN: {{ book.isbn }}</p>
+
+        <button class="addbtn" (click)="addToCart(book)">Add to Cart</button>
       </div>
     </div>
   </div>

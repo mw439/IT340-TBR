@@ -1,17 +1,46 @@
-<main>
-  <h2>Contact Us</h2>
-  <p>Have a question, suggestion, or issue? Send us a message below.</p>
+<div class="contact-bg">
+  <div class="contact-wrap">
+    <div class="hero">
+      <h1>Contact Us</h1>
+      <p>
+        Need help finding a book or have an order question? Send us a message and we’ll get back to you.
+      </p>
+    </div>
 
-  <form>
-    <label for="name">Name:</label>
-    <input id="name" name="name" type="text" required />
+    <div class="card">
+      <h2>Send a Message</h2>
 
-    <label for="email">Email:</label>
-    <input id="email" name="email" type="email" required />
+      <div class="grid">
+        <div class="field">
+          <label>Name</label>
+          <input [(ngModel)]="name" placeholder="Your name" />
+        </div>
 
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+        <div class="field">
+          <label>Email</label>
+          <input [(ngModel)]="email" type="email" placeholder="you@email.com" />
+        </div>
+      </div>
 
-    <button type="submit">Send Message</button>
-  </form>
-</main>
+      <div class="field">
+        <label>Subject</label>
+        <input [(ngModel)]="subject" placeholder="What is this about?" />
+      </div>
+
+      <div class="field">
+        <label>Message</label>
+        <textarea [(ngModel)]="message" rows="6" placeholder="Write your message..."></textarea>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+
+      <button class="send" (click)="submit()">Send Message</button>
+
+      <div class="info">
+        <div><strong>Email:</strong> support@tbrbooks.com</div>
+        <div><strong>Hours:</strong> Mon–Fri, 9am–5pm</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -78,4 +78,7 @@ export const routes: Routes = [
   // ---------- DEFAULTS ----------
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/not-found' },
+
+  { path: 'checkout', loadComponent: () => import('./pages/checkout/checkout').then(m => m.Checkout) },
+
 ];

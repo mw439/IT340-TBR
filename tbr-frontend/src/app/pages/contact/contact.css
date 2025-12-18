@@ -1,59 +1,141 @@
-main {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  box-sizing: border-box;
+/* Background image (no external download needed) */
+.contact-bg {
+  min-height: calc(100vh - 120px);
+  padding: 28px 16px;
+
+  /* soft gradient "background image" */
+  background:
+    radial-gradient(circle at 15% 15%, rgba(46,125,50,0.20), transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(0,0,0,0.10), transparent 45%),
+    radial-gradient(circle at 30% 90%, rgba(0,0,0,0.12), transparent 50%),
+    linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
 }
 
-main h2 {
-  margin-bottom: 0.5rem;
+.contact-wrap {
+  max-width: 980px;
+  margin: 0 auto;
 }
 
-main p {
-  margin-bottom: 1.5rem;
+.hero {
+  text-align: center;
+  margin-bottom: 14px;
 }
 
-/* Form layout */
-form {
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+
+.hero p {
+  margin: 8px 0 0 0;
+  opacity: 0.85;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.card {
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255,255,255,0.70);
+  backdrop-filter: blur(6px);
+}
+
+.card h2 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.field {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 6px;
+  margin: 10px 0;
 }
 
-/* Labels */
-form label {
-  font-weight: 500;
+label {
+  font-size: 12px;
+  opacity: 0.85;
+  font-weight: 800;
 }
 
-/* Inputs and textarea */
-form input,
-form textarea {
+input, textarea {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: rgba(255,255,255,0.90);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.error {
+  margin: 8px 0 0 0;
+  color: #b00020;
+  font-weight: 800;
+}
+
+.success {
+  margin: 8px 0 0 0;
+  color: rgba(46,125,50,1);
+  font-weight: 900;
+}
+
+.send {
   width: 100%;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #ccc;      /* neutral border */
-  border-radius: 4px;
-  font: inherit;
-  box-sizing: border-box;
-}
-
-/* Better focus state for accessibility */
-form input:focus,
-form textarea:focus {
-  outline: 2px solid #999;
-  outline-offset: 1px;
-}
-
-/* Button */
-form button {
-  margin-top: 0.5rem;
-  padding: 0.6rem 1rem;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
   border: none;
-  border-radius: 4px;
-  font: inherit;
   cursor: pointer;
+  font-weight: 900;
+  background: rgba(46,125,50,0.92);
+  color: white;
 }
 
-/* Optional hover state (will use browser default button color) */
-form button:hover {
-  filter: brightness(0.95);
+.send:hover { filter: brightness(1.06); }
+
+.info {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.10);
+  opacity: 0.85;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+@media (max-width: 720px) {
+  .info { flex-direction: column; }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: rgba(0,0,0,0.30);
+    border-color: rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.92);
+  }
+  input, textarea {
+    background: rgba(0,0,0,0.25);
+    border-color: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.92);
+  }
+  .info { border-top-color: rgba(255,255,255,0.14); }
 }

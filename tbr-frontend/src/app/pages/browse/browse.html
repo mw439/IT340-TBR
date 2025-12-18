@@ -1,22 +1,65 @@
-<main class="browse-page">
-  <h2>Browse Books</h2>
-  <div class="book-grid">
-    <div class="book-card">
-      <img src="assets/images/sample-book1.jpg" alt="Book 1" />
-      <h3>The First Dawn</h3>
-      <p>A journey through time and imagination.</p>
+<div class="browse-wrap">
+  <div class="page-header">
+    <div class="header-left"></div>
+
+    <div class="header-center">
+      <h1>Browse</h1>
+      <p class="sub">
+        Curated collections (Harry Potter + related genres). Click “Load more” to show more books.
+      </p>
     </div>
 
-    <div class="book-card">
-      <img src="assets/images/sample-book2.jpg" alt="Book 2" />
-      <h3>Science of Everything</h3>
-      <p>Learn how the universe works in detail.</p>
-    </div>
-
-    <div class="book-card">
-      <img src="assets/images/sample-book3.jpg" alt="Book 3" />
-      <h3>Night in the Library</h3>
-      <p>A mysterious tale of knowledge and power.</p>
+    <div class="header-right">
+      <button class="btn" (click)="refresh()" [disabled]="pageLoading">Refresh</button>
     </div>
   </div>
-</main>
+
+  <div class="status">
+    <span *ngIf="pageLoading">Loading collections…</span>
+    <span class="error" *ngIf="!pageLoading && pageError">{{ pageError }}</span>
+  </div>
+
+  <section class="section" *ngFor="let s of sections">
+    <div class="section-head">
+      <h2>{{ s.title }}</h2>
+
+      <div class="actions">
+        <span class="mini" *ngIf="s.loading">Loading…</span>
+        <span class="mini error" *ngIf="!s.loading && s.error">{{ s.error }}</span>
+
+        <button class="btn ghost" (click)="loadMore(s)" [disabled]="s.loading">
+          Load more
+        </button>
+      </div>
+    </div>
+
+    <div class="grid" *ngIf="s.items.length">
+      <article class="card" *ngFor="let b of s.items">
+        <div class="cover" (click)="addToCart(b)" title="Click to add to cart">
+          <img *ngIf="b.coverUrl" [src]="b.coverUrl" alt="cover" />
+          <div *ngIf="!b.coverUrl" class="no-cover">No Cover</div>
+        </div>
+
+        <div class="card-body">
+          <div class="title-row">
+            <div class="book-title" title="{{ b.title }}">{{ b.title }}</div>
+            <div class="price" *ngIf="b.price">${{ b.price }}</div>
+          </div>
+
+          <div class="author" title="{{ b.author }}">by {{ b.author }}</div>
+
+          <div class="meta">
+            <span *ngIf="b.firstPublishYear">Published: {{ b.firstPublishYear }}</span>
+            <span *ngIf="!b.firstPublishYear">Published: N/A</span>
+          </div>
+
+          <button class="addbtn" (click)="addToCart(b)">Add to Cart</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="empty" *ngIf="!s.loading && !s.items.length && !s.error">
+      No books loaded yet for this section.
+    </div>
+  </section>
+</div>

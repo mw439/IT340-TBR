@@ -1,35 +1,86 @@
-<main class="checkout-page">
-  <h2>Checkout</h2>
+<div class="checkout-wrap">
+  <div class="top">
+    <h1>Checkout</h1>
+    <p class="sub">Demo checkout page (no real payments processed).</p>
+  </div>
 
-  <form class="checkout-form">
-    <h3>Shipping Information</h3>
-    <label>Full Name
-      <input type="text" placeholder="John Doe" required />
-    </label>
-    <label>Address
-      <input type="text" placeholder="123 Main Street" required />
-    </label>
-    <label>City
-      <input type="text" placeholder="Newark" required />
-    </label>
-    <label>State
-      <input type="text" placeholder="NJ" required />
-    </label>
-    <label>ZIP Code
-      <input type="text" placeholder="07102" required />
-    </label>
+  <div class="success" *ngIf="success">
+    <h2>Order Confirmed ✅</h2>
+    <p>Your demo order was placed successfully.</p>
+    <p><strong>Order ID:</strong> {{ orderId }}</p>
+    <p class="mini">Redirecting to Home…</p>
+  </div>
 
-    <h3>Payment Details</h3>
-    <label>Card Number
-      <input type="text" placeholder="XXXX XXXX XXXX XXXX" required />
-    </label>
-    <label>Expiration Date
-      <input type="month" required />
-    </label>
-    <label>CVV
-      <input type="text" placeholder="123" required />
-    </label>
+  <div class="grid" *ngIf="!success">
+    <div class="panel">
+      <h2>Shipping & Contact</h2>
 
-    <button type="submit" class="btn">Place Order</button>
-  </form>
-</main>
+      <div class="field">
+        <label>Full Name</label>
+        <input [(ngModel)]="fullName" placeholder="John Doe" />
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input [(ngModel)]="email" type="email" placeholder="john@email.com" />
+      </div>
+
+      <div class="field">
+        <label>Address</label>
+        <input [(ngModel)]="address" placeholder="123 Main St" />
+      </div>
+
+      <div class="two">
+        <div class="field">
+          <label>City</label>
+          <input [(ngModel)]="city" placeholder="Newark" />
+        </div>
+        <div class="field">
+          <label>State</label>
+          <input [(ngModel)]="state" placeholder="NJ" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>ZIP</label>
+        <input [(ngModel)]="zip" placeholder="07102" />
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Payment (Demo)</h2>
+
+      <div class="field">
+        <label>Name on Card</label>
+        <input [(ngModel)]="cardName" placeholder="John Doe" />
+      </div>
+
+      <div class="field">
+        <label>Card Number</label>
+        <input [(ngModel)]="cardNumber" placeholder="4111 1111 1111 1111" />
+      </div>
+
+      <div class="two">
+        <div class="field">
+          <label>Exp</label>
+          <input [(ngModel)]="exp" placeholder="12/28" />
+        </div>
+        <div class="field">
+          <label>CVV</label>
+          <input [(ngModel)]="cvv" placeholder="123" />
+        </div>
+      </div>
+
+      <div class="summary">
+        <div class="row"><span>Subtotal</span><strong>${{ subtotal() }}</strong></div>
+        <div class="row"><span>Tax (demo 7%)</span><strong>${{ tax() }}</strong></div>
+        <div class="row total"><span>Total</span><strong>${{ total() }}</strong></div>
+      </div>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button class="place" (click)="placeOrder()">Place Order</button>
+      <a class="back" routerLink="/cart">Back to cart</a>
+    </div>
+  </div>
+</div>

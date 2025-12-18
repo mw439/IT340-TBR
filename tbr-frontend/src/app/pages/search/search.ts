@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { CartService, CartBook } from '../../services/cart.service';
 
 type BookResult = {
   key: string;
@@ -26,7 +27,7 @@ export class Search {
   errorMessage = '';
   results: BookResult[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cart: CartService) {}
 
   onSearch(): void {
     this.errorMessage = '';
@@ -41,19 +42,17 @@ export class Search {
     this.loading = true;
     this.results = [];
 
-    // Open Library search (frontend has internet access per IT340 design)
     const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(q)}&limit=25`;
 
     this.http.get<any>(url).subscribe({
       next: (data: any) => {
-        const docs = Array.isArray(data?.docs) ? data.docs : [];
+        const docs: any[] = Array.isArray(data?.docs) ? data.docs : [];
 
         this.results = docs.map((doc: any) => {
           const coverId = doc?.cover_i;
           const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` : null;
-
-          // simple demo price (store-style)
-          const price = 10 + Math.floor(Math.random() * 15);
+          const seed = (doc?.title?.length || 10) + (doc?.first_publish_year || 0);
+          const price = 9 + (seed % 16);
 
           return {
             key: doc?.key || '',
@@ -75,11 +74,22 @@ export class Search {
       error: (err: any) => {
         this.loading = false;
         this.results = [];
-        this.errorMessage =
-          err?.message ||
-          'Search failed. This VM may not have internet access.';
+        this.errorMessage = err?.message || 'Search failed. This VM may not have internet access.';
       },
     });
+  }
+
+  addToCart(book: BookResult): void {
+    const cartBook: CartBook = {
+      key: book.key,
+      title: book.title,
+      author: book.author,
+      coverUrl: book.coverUrl || null,
+      price: Number(book.price || 10),
+      isbn: book.isbn || '',
+      firstPublishYear: book.firstPublishYear || null,
+    };
+    this.cart.add(cartBook, 1);
   }
 
   clear(): void {

@@ -1,0 +1,27 @@
+/* Cart badge */
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-badge {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 20px;
+  text-align: center;
+
+  /* visible on light & dark */
+  background: rgba(46, 125, 50, 0.95);
+  color: #fff;
+}
+
+/* Optional: make badge stand out more in dark mode */
+body.dark-mode .cart-badge {
+  background: rgba(46, 125, 50, 0.95);
+  color: #fff;
+}

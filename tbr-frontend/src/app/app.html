@@ -1,6 +1,5 @@
 <header class="navbar">
   <nav class="nav-links">
-    <!-- ✅ FIXED HOME ROUTE -->
     <a
       routerLink="/home"
       routerLinkActive="active"
@@ -11,15 +10,21 @@
 
     <a routerLink="/browse" routerLinkActive="active">Browse</a>
     <a routerLink="/search" routerLinkActive="active">Search</a>
-    <a routerLink="/cart" routerLinkActive="active">Cart</a>
+
+    <!-- Cart with count badge -->
+    <a routerLink="/cart" routerLinkActive="active" class="cart-link">
+      Cart
+      <ng-container *ngIf="(cartCount$ | async) as c">
+        <span class="cart-badge" *ngIf="c > 0">{{ c }}</span>
+      </ng-container>
+    </a>
+
     <a routerLink="/contact" routerLinkActive="active">Contact</a>
 
-    <!-- 🔻 Show Login when NOT logged in -->
     <ng-container *ngIf="!(isLoggedIn$ | async); else loggedInLinks">
       <a routerLink="/login" routerLinkActive="active">Login</a>
     </ng-container>
 
-    <!-- 🔻 Show Profile + Logout when logged in -->
     <ng-template #loggedInLinks>
       <a routerLink="/profile" routerLinkActive="active">Profile</a>
       <button type="button" class="logout-button" (click)="onLogout()">

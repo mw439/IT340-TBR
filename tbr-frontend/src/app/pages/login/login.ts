@@ -42,6 +42,7 @@ export class Login {
         }
 
         // Normal login
+        // Normal login (AuthService now stores token)
         if (res.token) {
           this.router.navigate(['/home']);
           return;

@@ -1,6 +1,5 @@
 <header class="navbar">
   <nav class="nav">
-    <!-- LEFT spacer (keeps center truly centered) -->
     <div class="nav-left"></div>
 
     <!-- CENTER links -->
@@ -9,23 +8,19 @@
       <a routerLink="/browse" routerLinkActive="active">BROWSE</a>
       <a routerLink="/search" routerLinkActive="active">SEARCH</a>
       <a routerLink="/contact" routerLinkActive="active">CONTACT</a>
-      <a routerLink="/profile" routerLinkActive="active">PROFILE</a>
+      <a routerLink="/profile" routerLinkActive="active" *ngIf="(isLoggedIn$ | async)">PROFILE</a>
+
+      <!-- ✅ Only show login when logged out -->
+      <a routerLink="/login" routerLinkActive="active" *ngIf="!(isLoggedIn$ | async)">LOGIN</a>
     </div>
 
-    <!-- RIGHT actions (UNCHANGED, already perfect) -->
+    <!-- RIGHT actions -->
     <div class="nav-right">
-      <button
-        type="button"
-        class="logout-button"
-        (click)="onLogout()"
-        *ngIf="(isLoggedIn$ | async)"
-      >
+      <button type="button" class="logout-button" (click)="onLogout()" *ngIf="(isLoggedIn$ | async)">
         Logout
       </button>
 
-      <button class="dark-toggle" (click)="toggleDarkMode()" title="Toggle dark mode">
-        🌙
-      </button>
+      <button class="dark-toggle" (click)="toggleDarkMode()" title="Toggle dark mode">🌙</button>
 
       <a routerLink="/cart" routerLinkActive="active" class="cart-icon" title="Cart">
         <svg viewBox="0 0 24 24" aria-hidden="true">

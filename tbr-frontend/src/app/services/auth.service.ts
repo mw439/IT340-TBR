@@ -46,8 +46,17 @@ export class AuthService {
 
   // Step 1: Login returns tempToken (always)
   login(data: { email: string; password: string }): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${API}/login`, data);
+    return this.http.post<LoginResponse>(`${API}/login`, data).pipe(
+      tap((res) => {
+        // ✅ Normal login: save token + mark logged in
+        if (res?.token) {
+          localStorage.setItem('tbr_token', res.token);
+          this.loggedInSubject.next(true);
+        }
+      })
+    );
   }
+
 
   // Step 2: Verify OTP -> returns real JWT
   verifyMfa(tempToken: string, code: string): Observable<{ token: string }> {
